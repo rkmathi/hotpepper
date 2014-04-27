@@ -15,8 +15,16 @@ module Hotpepper
       if options.empty?
         raise(ArgumentError)
       end
-      url = API_BASE_URL + "?" + @api_key + options.to_a.map{ |params| params.join("=") }.join("&")
+      url = API_BASE_URL + "?key=" + @api_key + "&" + options.to_a.map{ |params| params.join("=") }.join("&")
       RestClient.get url
     end
+  end
+
+  class API
+    def initialize(options = {})
+      client = Client.new(ENV["API_KEY"])
+      @response = client.gourmet_search(options)
+    end
+
   end
 end

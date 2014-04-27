@@ -17,5 +17,14 @@ describe Hotpepper::Client do
     end
 
   end
+end
+
+describe Hotpepper::API do
+
+  describe "#initialize" do
+    it "has a client instance" do
+      expect { Hotpepper::API.new("hoge" => "hoge") }.not_to raise_error(Exception)
+    end
+  end
 
 end
