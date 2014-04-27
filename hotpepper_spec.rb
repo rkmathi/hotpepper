@@ -2,11 +2,20 @@
 require "./hotpepper"
 
 describe Hotpepper::Client do
-  describe "#initialize" do
-    let(:client) { Hotpepper::Client.new(api_key: ENV["API_KEY"]) }
+  let(:client) { Hotpepper::Client.new(api_key=ENV["API_KEY"]) }
 
+  describe "#initialize" do
     it "has always a API key" do
       expect(client.api_key).to eq ENV["API_KEY"]
     end
   end
+
+  describe ".gourmet_search" do
+    it "has always search options" do
+      expect { client.gourmet_search }.to raise_error(ArgumentError)
+      expect(client.gourmet_search("hoge" => "hoge")).to be_a(String)
+    end
+
+  end
+
 end
