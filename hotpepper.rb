@@ -15,12 +15,12 @@ module Hotpepper
       if options.empty?
         raise(ArgumentError)
       end
-      url = API_BASE_URL + "?key=" + @api_key + "&" + options.to_a.map{ |params| params.join("=") }.join("&")
-      RestClient.get url
+      RestClient.get API_BASE_URL, {params: options.merge(:key => @api_key)}
     end
   end
 
   class API
+    attr_reader :response
     def initialize(options = {})
       client = Client.new(ENV["API_KEY"])
       @response = client.gourmet_search(options)
