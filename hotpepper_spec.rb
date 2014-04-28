@@ -2,8 +2,6 @@
 require "./hotpepper"
 require "./helper"
 
-#PR練習用コメント
-
 describe Hotpepper::Client do
 
   let(:client) { Hotpepper::Client.new }
